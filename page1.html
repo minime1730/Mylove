@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Page 1</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Segoe UI',sans-serif;}
+
+body{
+height:100vh;
+background:linear-gradient(135deg,#e6ccff,#ffb6d9);
+display:flex;justify-content:center;align-items:center;
+color:#5a2a83;text-align:center;overflow:hidden;
+opacity:0;transform:scale(1.05);
+transition:opacity 1s ease, transform 1s ease;
+}
+body.loaded{opacity:1;transform:scale(1);}
+
+.container{max-width:700px;padding:30px;}
+p{font-size:18px;line-height:1.7;margin-bottom:12px;}
+
+.btn{
+margin-top:25px;padding:10px 20px;border:none;
+border-radius:25px;background:#ff69b4;color:white;
+cursor:pointer;margin:5px;
+}
+
+.heart{position:absolute;bottom:-40px;width:20px;height:20px;background:pink;transform:rotate(45deg);animation:float 6s linear infinite;}
+.heart::before,.heart::after{content:'';position:absolute;width:20px;height:20px;background:pink;border-radius:50%;}
+.heart::before{top:-10px;} .heart::after{left:-10px;}
+@keyframes float{0%{transform:translateY(0) rotate(45deg);}100%{transform:translateY(-100vh) rotate(45deg);opacity:0;}}
+</style>
+</head>
+
+<body>
+<div class="container">
+<p>Last year was not just another date for me.</p>
+<p>It was the day I understood something about myself.</p>
+<p>Until that day, I never questioned what I felt. I simply enjoyed talking to you, laughing with you, sharing random moments.</p>
+<p>But that day, something felt different.</p>
+<p>I realized I wasn’t just happy around you —</p>
+<p><strong>I was happier because of you.</strong></p>
+<p>And that realization stayed with me.</p>
+
+<button class="btn" onclick="navigate('index.html')">⬅ Back</button>
+<button class="btn" onclick="navigate('page2.html')">Next ➜</button>
+</div>
+
+<script>
+window.addEventListener("load",()=>{document.body.classList.add("loaded");createHearts();});
+function navigate(page){document.body.classList.remove("loaded");setTimeout(()=>{window.location.href=page;},800);}
+function createHearts(){setInterval(()=>{const h=document.createElement("div");h.classList.add("heart");h.style.left=Math.random()*100+"vw";document.body.appendChild(h);setTimeout(()=>h.remove(),7000);},500);}
+</script>
+</body>
+</html>
